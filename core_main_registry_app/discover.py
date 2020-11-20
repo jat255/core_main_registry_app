@@ -107,6 +107,9 @@ def _init_custom_registry():
         raise Exception("Can't get the current template.")
 
     if len(custom_resource_api.get_all_by_template(current_template)) > 0:
+        print('**********')
+        print(custom_resource_api.get_all_by_template(current_template))
+        print('**********')
         logger.info("Custom resources related to current template already exist.")
     else:
         json_path = CUSTOM_REGISTRY_FILE_PATH
@@ -119,6 +122,9 @@ def _init_custom_registry():
             default_json_path = finders.find(json_path)
             with open(default_json_path) as json_file:
                 data = json.load(json_file)
+                print('**********')
+                print(f'parsing json: {data}')
+                print('**********')
                 custom_resource_api.parse_and_save(data, current_template)
         except Exception as e:
             logger.error(
