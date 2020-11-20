@@ -27,7 +27,7 @@ def parse_and_save(data, current_template):
         resource = data[key]
 
         custom_resource = CustomResource(template=current_template)
-
+        print('******************' + custom_resource)
         if _is_type_all(resource):
             custom_resource = _create_custom_resource_type_all(
                 custom_resource, resource, key
