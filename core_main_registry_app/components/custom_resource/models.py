@@ -31,7 +31,16 @@ class CustomResource(Document):
     role_type = fields.StringField(blank=True)
     sort = fields.IntField(unique_with="template", min_value=0)
     refinements = fields.ListField(fields.StringField(), blank=True)
-
+    
+    def __str__(self):
+        return f'CustomResource: name_in_schema: {self.name_in_schema} \n' + \
+               f'                title: {self.title}\n' + \
+               f'                slug: {self.slug}\n' + \
+               f'                description: {self.description}\n' + \
+               f'                type: {self.type}\n' + \
+               f'                role_choice: {self.role_choice}\n' + \
+               f'                role_type: {self.role_type}'
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
